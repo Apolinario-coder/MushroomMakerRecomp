@@ -76,6 +76,16 @@ def cmd_compile(jobs):
     import build_opt
     build_opt.CLANG = CLANG                                     # the MSVC path in build.py/build_opt.py is swapped for mingw clang
     build_opt.OPT = os.environ.get('RECOMP_OPT', '-O1')
+    def compile_unit(name):
+        src = name if os.path.isabs(name) else os.path.join(GEN, name)
+        base = os.path.basename(src)
+        obj = os.path.join(OBJ, base[:-2] + '.obj')
+        code, output, seconds, note = build_opt.compile_file(
+            src, obj, ['-w', '-fno-strict-aliasing', '-I', HERE, '-I', GEN])
+        if note:
+            say('%s: %s' % (base, note))
+        return base, code, output, seconds
+
     os.makedirs(OBJ, exist_ok=True)
     all_c = sorted(n for n in os.listdir(GEN) if n.endswith('.c'))
     if build_opt.OPT == '-O0' and UNITY_BATCH > 1:
@@ -111,7 +121,7 @@ def cmd_compile(jobs):
         t0 = time.time()
         failed, done = [], 0
         with concurrent.futures.ThreadPoolExecutor(jobs) as pool:
-            futs = {pool.submit(build_opt.compile_one_main, usrc): uname for uname, usrc in todo}
+            futs = {pool.submit(compile_unit, usrc): uname for uname, usrc in todo}
             for fut in concurrent.futures.as_completed(futs):
                 _, code, out, secs = fut.result()
                 uname = futs[fut]
@@ -135,7 +145,7 @@ def cmd_compile(jobs):
     t0 = time.time()
     failed, done = [], 0
     with concurrent.futures.ThreadPoolExecutor(jobs) as pool:
-        futs = {pool.submit(build_opt.compile_one_main, n): n for n in todo}
+        futs = {pool.submit(compile_unit, n): n for n in todo}
         for fut in concurrent.futures.as_completed(futs):
             name, code, out, secs = fut.result()
             done += 1

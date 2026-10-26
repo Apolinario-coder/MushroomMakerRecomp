@@ -2,7 +2,7 @@
   "files": {
     "python-origin.json": "1b553eb18fd97776d80657c40f2f3fff02bf0dd0b536f4be0ca9522f7c0a990b",
     "toolchain.zip": "5b9667273a0545ef75aace7d9e1374b3112f369b7ae3d18c4b0de154eb5739f6",
-    "prebuilt/host-support.a": "eefe07e7a2821511048f6ca834f7bd090aba661d62d86078613060a0839e637f",
+    "prebuilt/host-support.a": "e0dc67b4a2f8934b1734b14f9bed96213dc7b6ac7305b5c916b75f8fe162ae47",
     "prebuilt/libgcc_s_seh-1.dll": "ff139cfe956709283f7b70a06af8bc8bb9d1c3bef60ec1bc8d363c91351cfeb2",
     "prebuilt/libwinpthread-1.dll": "92e996ab2cb61f5106b8b67a4dc23dd2959958cdb3afe6d2f9c6fc3afef85258",
     "prebuilt/SDL3.dll": "d1dc8ff1d80db6d8bcc22313affd9baf1aece27a8a18e2265f56a85179bfd3f3",

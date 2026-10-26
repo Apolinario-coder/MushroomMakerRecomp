@@ -20,7 +20,6 @@ Keep the internal RomFS layout intact (for example, `Pack`, `Model` and `Sound`)
 
 ```text
 My game dump/
-  control.nacp            # From the updated game's control content
   exefs/
     main
     sdk
@@ -33,7 +32,7 @@ My game dump/
 
 ```
 
-The launcher does not extract or decrypt NSP/XCI containers, apply update patches, obtain firmware, download game files or accept keys. Prepare the merged folders before opening it. Changing the display version in `control.nacp` will not bypass executable verification.
+The launcher does not extract or decrypt NSP/XCI containers, apply update patches, obtain firmware, download game files or accept keys. Prepare the merged folders before opening it. The executable hashes identify the supported version. No separate control.nacp export is required.
 
 ## Start the game
 

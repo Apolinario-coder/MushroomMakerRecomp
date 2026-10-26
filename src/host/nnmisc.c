@@ -60,12 +60,8 @@ static void fatal(Ctx *c, const char *fmt, ...) {
 static const char *safe_str(uint64_t p) { return p > 0x10000 ? (const char *)(uintptr_t)p : "(null)"; }
 
 static void oe_GetDisplayVersion(Ctx *c) {
-    char version[16];
-    const char *path = getenv("SSBU_CONTROL_NACP");
-    FILE *f = path && *path ? fopen(path, "rb") : NULL;
-    int ok = f && !fseek(f, 0x3060, SEEK_SET) && fread(version, 1, sizeof version, f) == sizeof version;
-    if (f) fclose(f);
-    if (!ok || !memchr(version, 0, sizeof version)) { fatal(c, "GetDisplayVersion needs a valid SSBU_CONTROL_NACP from this game's dump"); return; }
+    /* Version belongs to this executable build; no external control metadata is needed. */
+    static const char version[16] = "3.0.3";
     if (!A0) { fatal(c, "GetDisplayVersion: null output"); return; }
     memcpy((void *)(uintptr_t)A0, version, sizeof version);
 }
@@ -1011,7 +1007,7 @@ void register_misc_imports(void) {
         c->x[0] = (uintptr_t)(out + 1);
         import_lookup("_ZN2nn2oe17GetDisplayVersionEPNS0_14DisplayVersionE")(c);
         int bad = out[0] != 0xa5 || out[17] != 0xa5 || strcmp((char *)out + 1, getenv("SSBU_DISPLAY_VERSION_SELFTEST"));
-        printf("DisplayVersion: local NACP, import binding and 16-byte bounds %s\n", bad ? "FAILED" : "OK");
+        printf("DisplayVersion: build version, import binding and 16-byte bounds %s\n", bad ? "FAILED" : "OK");
         free(c); fflush(stdout); ExitProcess(bad ? 1 : 0);
     }
     (void)ret1;

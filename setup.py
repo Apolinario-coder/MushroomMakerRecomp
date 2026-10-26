@@ -54,7 +54,7 @@ def digest(path):
 
 def locate_game(dump):
     """Find extracted components without moving or copying the user's files."""
-    names = {name: [] for name in ('main', 'sdk', 'main.npdm', 'control.nacp')}
+    names = {name: [] for name in ('main', 'sdk', 'main.npdm')}
     romfs = []
     def scan_error(error):
         raise ValueError('Cannot search game folder: '+str(error))
@@ -84,14 +84,6 @@ def locate_game(dump):
     if paired is None and len(npdms) != 1:
         raise ValueError('Multiple main.npdm files found. Keep the one from the updated ExeFS with main.')
     found['main.npdm'] = paired or npdms[0]
-    controls = sorted(names['control.nacp'], key=lambda p: (len(p.parts), str(p).lower()))
-    def updated_control(path):
-        if path.stat().st_size != 0x4000:
-            return False
-        with path.open('rb') as stream:
-            stream.seek(0x3060)
-            return stream.read(16).split(b'\0')[0] == b'3.0.3'
-    found['control.nacp'] = next((p for p in controls if updated_control(p)), controls[0])
     return found
 
 
@@ -162,11 +154,6 @@ def validate(dump, toolchain=None):
     missing = [str(p) for p in required if not p.is_file()]
     if missing:
         raise ValueError('Required files are missing:\n' + '\n'.join(missing))
-    if game['control.nacp'].stat().st_size != 0x4000:
-        raise ValueError('control.nacp must be the complete 16 KiB control metadata file.')
-    nacp = game['control.nacp'].read_bytes()
-    if nacp[0x3060:0x3070].split(b'\0')[0] != b'3.0.3':
-        raise ValueError('This port requires update 3.0.3. Export the merged game after applying the update.')
     for name, expected in (('main', MAIN_SHA), ('sdk', SDK_SHA)):
         if digest(game[name]) != expected:
             raise ValueError('The ExeFS '+name+' does not match the supported 3.0.3 dump. Check the update and export again.')
@@ -276,7 +263,7 @@ def launch(host, env, workspace, dump):
             shutil.copy2(source, target)
     env.update(SSBU_PYTHON=sys.executable, SSBU_PROJECT_ROOT=str(DATA), SSBU_ROMFS=str(game['romfs']),
                SSBU_USERDATA=str(DATA/'saves'), SSBU_SHOW='1', SSBU_VOLUME='100', SSBU_TITLE='MushroomMakerRecomp',
-               SSBU_SDK_ELF=str(workspace/'sdk.elf'), SSBU_CONTROL_NACP=str(game['control.nacp']),
+               SSBU_SDK_ELF=str(workspace/'sdk.elf'),
                SSBU_OPEN_FONTS=str(ROOT/'assets/fonts_open'), SSBU_MODS=str(DATA/'mods'),
                SSBU_CONFIG=str(DATA/'config/controllers.ini'),
                SSBU_GRAPHICS_CONFIG=str(DATA/'config/graphics.ini'),
