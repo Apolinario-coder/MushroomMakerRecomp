@@ -1,0 +1,10 @@
+{
+  "url": "https://www.python.org/ftp/python/3.13.9/python-3.13.9-embed-amd64.zip",
+  "sha256": "91d828c2da3a029b41699e918674a0cb379c02cf20dab9c501306885f837402a",
+  "wheels": {
+    "cffi-2.1.1-cp313-cp313-win_amd64.whl": "1aa5645c30469b09530c4ebca77ebf8f17618293c58f8549cb1a543a50236e7d",
+    "cryptography-50.0.2-cp311-abi3-win_amd64.whl": "7afa5a6602a9f29af1f3a2965f831bae7c9d5d597b7cbb716d41ab3b7d89879c",
+    "pillow-13.0.0-cp313-cp313-win_amd64.whl": "9dda0788a9932776a75d8bcc020076edc308ce2508b51f6739a45e3158b3fc42",
+    "pycparser-3.12-py3-none-any.whl": "a076f3f489b39b43ed13563a1dafe42447445bec2e294154ec5c57fcdda4c85e"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "source": "https://github.com/OpenSmash-Ultimate/ssbu-recomp",
+  "commit": "fea28c18b785372b5024ece0a2ea52e860b1fa04",
+  "files": {
+    "LICENSE-Apache-2.0.txt": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+    "LICENSE-GPL-2.0-or-later.txt": "aaf135472f81c5b4a0dca9367e5bb5e9750032b5bebe5442b36e4c0a47430df3",
+    "LICENSE-OFL-1.1.txt": "ae4cd013ea886e0787130cc36432126ea626bf4990293e88d24bdf96dcdf470d",
+    "README.md": "d7ee9740b6bc6cf429becdb7079fcdf1429340124817c922ef8a54d6e7368f5b",
+    "nintendo_ext2_003.ttf": "e00032977ad7d9ab5c88b1d03c1377e3cf1647578d6f753fe44813a6e59c9598",
+    "nintendo_ext_003.ttf": "e00032977ad7d9ab5c88b1d03c1377e3cf1647578d6f753fe44813a6e59c9598",
+    "nintendo_udjxh-db_zh-tw_003.ttf": "1c8d3cc6810ecd3623ebff7d2c3db1a44024260c5ae662f8166d69b9425828ed",
+    "nintendo_udsg-r_ext_zh-cn_003.ttf": "71d10a86b4c54a5a9c0c8b467e53ac67d79edb96c956e4e9f65a7074dfb9992a",
+    "nintendo_udsg-r_ko_003.ttf": "13c03e22a633919beb2847c58c8285fb8a735ee97097d7c48fd403f8294b05f8",
+    "nintendo_udsg-r_org_zh-cn_003.ttf": "13c03e22a633919beb2847c58c8285fb8a735ee97097d7c48fd403f8294b05f8",
+    "nintendo_udsg-r_std_003.ttf": "13c03e22a633919beb2847c58c8285fb8a735ee97097d7c48fd403f8294b05f8",
+    "symbols-source.ttx": "0c534850160b0a5615a54ca3ccc89b881e7b13a7ad24b497e4e280dc53fe2d23"
+  },
+  "symbol_modification": "MM2 PC Symbols: aliases and original diamond fallback; tools/build_open_symbols.py"
+}

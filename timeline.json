@@ -1,0 +1,16 @@
+{
+  "enter.header": 0.0,
+  "enter.header.duration": 0.24,
+  "enter.hero": 0.06,
+  "enter.hero.duration": 0.38,
+  "enter.form": 0.14,
+  "enter.form.duration": 0.42,
+  "enter.help": 0.23,
+  "enter.help.duration": 0.36,
+  "enter.footer": 0.31,
+  "enter.footer.duration": 0.30,
+  "interaction.hover": 0.16,
+  "interaction.press": 0.09,
+  "interaction.status": 0.18,
+  "review.settled": 0.75
+}

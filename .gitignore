@@ -1,0 +1,37 @@
+# User files and generated output belong outside this repository.
+*.nsp
+*.xci
+*.nca
+*.nso
+*.elf
+*.npdm
+*.nacp
+*.keys
+*.bcd
+*.btl
+*.ttf
+!assets/fonts_open/*.ttf
+*.otf
+*.log
+*.dmp
+*.obj
+*.pdb
+*.dll
+*.dll.a
+*.rsp
+*.map
+__pycache__/
+.env
+.env.*
+romfs/
+exefs/
+Firmware/
+userdata/
+saves/
+cache/
+gen/
+obj/
+
+# Redistributable application-local tools, inventoried in portable/manifest.json.
+!portable/**/*.dll
+!portable/**/*.dll.a
