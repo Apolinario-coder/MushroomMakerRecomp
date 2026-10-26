@@ -32,6 +32,16 @@ cache/
 gen/
 obj/
 
-# Redistributable application-local tools, inventoried in portable/manifest.json.
-!portable/**/*.dll
-!portable/**/*.dll.a
+# Compiled programs and redistributed dependencies belong in release assets.
+*.exe
+*.pyd
+*.a
+*.so
+*.dylib
+*.zip
+*.AppImage
+*.dmg
+build/
+dist/
+portable/
+release-manifest.json

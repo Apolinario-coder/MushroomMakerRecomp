@@ -54,13 +54,9 @@ Saves, settings, logs, cached downloads and locally generated game code stay in 
 
 ## Contents and source
 
-`Launcher.cs` and `Launcher.xaml` are the launcher source. `setup.py` validates the files, generates C from your executables, builds the runtime and starts it. `src/` contains the host runtime and translation tools. `tools/` contains the Course World API workers. `defaults/` supplies initial settings; existing user settings are preserved.
+The source repository stores the launcher in `tools/launcher/`, the preparation script in `tools/setup.py` and the runtime in `runtime/`. The packaged application uses the flat layout expected by the launcher: `Launcher.xaml`, `timeline.json`, `setup.py` and `src/` beside the executable.
 
-Run the following commands from the repository root. To rebuild the launcher from source:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\build-launcher.ps1
-```
+See [Building from source](build.md) for launcher compilation and complete Windows package assembly. The main branch contains sources; compiled applications and portable tools are supplied through Releases.
 
 No game assets, generated Nintendo code, game DLL, firmware, Nintendo system fonts, keys, saves, database credentials or caches are included. Runtime DLLs are built or copied from your local toolchain during preparation. Refer to [NOTICE.md](../NOTICE.md) and the preserved third-party notices for source licensing. This folder has been prepared for review; inherited runtime licensing still needs confirmation before public distribution.
 
@@ -76,4 +72,4 @@ Course World uses the game's default silhouette icons. The port skips Mii model 
 
 `portable/python` contains the application-local CPython runtime and the Course World helper dependencies, including their licenses. `portable/toolchain.zip` contains a relocatable MSYS2 UCRT64 compiler subset and its license notices; it is unpacked into your Windows profile on first preparation. Its `ORIGIN.json` identifies package versions and upstream source locations. `portable/prebuilt/support-sources.json` lists the independent PC sources used in `host-support.a`; it explicitly excludes the two SDK-derived source files. All these artifacts have checksums in `portable/manifest.json`.
 
-Release authors can regenerate the included tools with `tools/stage_portable_python.py` and `tools/stage_portable_compiler.py` in the development project before assembling a release. Development builds may still pass `--toolchain` to `setup.py` to use a local compiler.
+Release authors can assemble the current source tree with `tools/package_release.py` using an inventoried portable bundle from an existing Windows release. Developer preparation can pass `--toolchain` to `tools/setup.py` to use a local compiler. See the [build guide](build.md).
